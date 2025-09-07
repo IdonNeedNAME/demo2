@@ -14,7 +14,10 @@ public enum ExceptionEnum {
     LIMITED_AUTHORITY(200005,"权限不够"),
     NOTBELONGTO_POST(200006,"该贴不属于该用户"),
     NULL_REPORT(200007,"不存在的举报"),
-    INVAILD_ACTION(200008,"无效操作");
+    INVAILD_ACTION(200008,"无效操作"),
+    TOOLONG_USERNAME(200009,"用户名过长"),
+    TOOLONG_PASSWORD(200010,"密码过长"),
+    INVAILD_PASSWORD(200011,"密码格式错误，密码必须包含数字和字母，且不能使用其他字符");
 
     public final int errorCode;
     public final String errorMessage;

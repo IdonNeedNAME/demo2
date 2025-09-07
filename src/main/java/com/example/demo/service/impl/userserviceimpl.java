@@ -48,12 +48,33 @@ public class userserviceimpl implements userservice {
         }
         else
         {
+            if(req.username.length()>10)
+                throw new Apiexception(ExceptionEnum.TOOLONG_USERNAME);
+            if(req.password.length()>20)
+                throw new Apiexception(ExceptionEnum.TOOLONG_PASSWORD);
+            if(!IsPassWordVaild(req.password))
+                throw new Apiexception(ExceptionEnum.INVAILD_PASSWORD);
             nu=user.builder().username(req.username).password(req.password).name(req.name).user_type(req.user_type).build();
             Userdata.insert(nu);
         }
         return true;
     }
-
+    public boolean  IsPassWordVaild(String password)
+    {
+        boolean num=false,letter=false;
+        for(int i=0;i<password.length();i++)
+        {
+            int asc=(int)password.charAt(i);
+            if((asc>=(int)'A'&&asc<=(int)'Z')||(asc>=(int)'a'&&asc<=(int)'z'))
+                letter=true;
+            else
+            if(asc>=(int)'0'&&asc<=(int)'9')
+                num=true;
+            else
+                return false;
+        }
+        return num&&letter;
+    }
 
 
 }

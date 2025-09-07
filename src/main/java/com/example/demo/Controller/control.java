@@ -36,7 +36,7 @@ public class control {
 
     }
     @PostMapping("/reg")
-    public AjaxResult regist(@RequestBody RegistReq da)
+    public AjaxResult register(@RequestBody RegistReq da)
     {
         try
         {
