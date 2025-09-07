@@ -3,7 +3,7 @@ package com.example.demo.service.impl;
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.DataStruct.ApproveReq;
 import com.example.demo.DataStruct.GetPostReportReq;
-import com.example.demo.Help.Helper;
+import com.example.demo.Helper.Helper;
 import com.example.demo.entity.post;
 import com.example.demo.entity.post_report;
 import com.example.demo.exception.Apiexception;

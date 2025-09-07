@@ -1,6 +1,6 @@
 package com.example.demo.Controller;
 import com.example.demo.DataStruct.RegistReq;
-import com.example.demo.DataStruct.UniRes;
+import com.example.demo.DataStruct.AjaxResult;
 import com.example.demo.entity.user;
 import com.example.demo.exception.Apiexception;
 import com.example.demo.service.impl.userserviceimpl;
@@ -18,7 +18,7 @@ public class control {
     @Resource
     userserviceimpl userservice;
     @PostMapping("/login")
-    public UniRes<loginRes> login(@RequestBody loginRequest da)
+    public AjaxResult<loginRes> login(@RequestBody loginRequest da)
     {
            loginRes res=new loginRes();
            user user1;
@@ -27,16 +27,16 @@ public class control {
            }
            catch(Apiexception ex)
            {
-               return UniRes.GenRes_Exception(ex,null);
+               return AjaxResult.GenRes_Exception(ex,null);
            }
 
                res.user_id=user1.id;
                res.user_type=user1.user_type;
-               return UniRes.GenRes_Succ(res);
+               return AjaxResult.GenRes_Succ(res);
 
     }
     @PostMapping("/reg")
-    public UniRes regist(@RequestBody RegistReq da)
+    public AjaxResult regist(@RequestBody RegistReq da)
     {
         try
         {
@@ -44,9 +44,9 @@ public class control {
         }
         catch(Apiexception ex)
         {
-            return UniRes.GenRes_Exception(ex);
+            return AjaxResult.GenRes_Exception(ex);
         }
-        return UniRes.GenRes_Succ(null);
+        return AjaxResult.GenRes_Succ(null);
     }
 
 

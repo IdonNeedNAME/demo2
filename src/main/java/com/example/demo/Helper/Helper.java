@@ -1,4 +1,4 @@
-package com.example.demo.Help;
+package com.example.demo.Helper;
 
 import com.baomidou.mybatisplus.core.conditions.query.QueryWrapper;
 import com.example.demo.entity.post;

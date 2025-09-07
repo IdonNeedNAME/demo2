@@ -18,7 +18,7 @@ public class stutent {
     @Resource
     public postserviceimpl postservice;
     @PostMapping("/post")
-    public UniRes<String> Addpost(@RequestBody postReq da)
+    public AjaxResult<String> Addpost(@RequestBody postReq da)
     {
         try
         {
@@ -26,18 +26,18 @@ public class stutent {
         }
         catch(Apiexception ex)
         {
-            return UniRes.GenRes_Exception(ex);
+            return AjaxResult.GenRes_Exception(ex);
         }
-        return UniRes.GenRes_Succ(null);
+        return AjaxResult.GenRes_Succ(null);
 
     }
     @GetMapping("/post")
-    public UniRes<List<post>> CheckAllpost()
+    public AjaxResult<List<post>> CheckAllpost()
     {
-        return UniRes.GenRes_Succ(postservice.CheckAllpost());
+        return AjaxResult.GenRes_Succ(postservice.CheckAllpost());
     }
     @DeleteMapping("/post")
-    public UniRes Hidepost(@RequestParam int user_id, @RequestParam int post_id)
+    public AjaxResult Hidepost(@RequestParam int user_id, @RequestParam int post_id)
     {
         HidePostReq req = new HidePostReq();
         req.user_id=user_id;
@@ -49,13 +49,13 @@ public class stutent {
         }
         catch(Apiexception ex)
         {
-            return UniRes.GenRes_Exception(ex);
+            return AjaxResult.GenRes_Exception(ex);
         }
-        return UniRes.GenRes_Succ(null);
+        return AjaxResult.GenRes_Succ(null);
 
     }
     @PostMapping("/report-post")
-    public UniRes Addreport_post(@RequestBody PostReportReq req)
+    public AjaxResult Addreport_post(@RequestBody PostReportReq req)
     {
         try
         {
@@ -63,12 +63,12 @@ public class stutent {
         }
         catch(Apiexception ex)
         {
-            return UniRes.GenRes_Exception(ex);
+            return AjaxResult.GenRes_Exception(ex);
         }
-            return UniRes.GenRes_Succ(null);
+            return AjaxResult.GenRes_Succ(null);
     }
     @PutMapping("/post")
-    public UniRes postupdate(@RequestBody postUpdateReq req)
+    public AjaxResult postupdate(@RequestBody postUpdateReq req)
     {
 
         try
@@ -77,12 +77,12 @@ public class stutent {
         }
         catch(Apiexception ex)
         {
-            return UniRes.GenRes_Exception(ex);
+            return AjaxResult.GenRes_Exception(ex);
         }
-        return UniRes.GenRes_Succ(null);
+        return AjaxResult.GenRes_Succ(null);
     }
     @GetMapping("/likes")
-    public UniRes Getlikes(@RequestParam int user_id, @RequestParam int post_id)
+    public AjaxResult Getlikes(@RequestParam int user_id, @RequestParam int post_id)
     {
 
         GetLikePostReq req = new GetLikePostReq();
@@ -90,12 +90,12 @@ public class stutent {
         req.post_id=post_id;
         int likes=postservice.Getlikes_post(req);
         if(likes!=-1)
-            return UniRes.GenRes_Succ(new GetLikeRes(likes));
+            return AjaxResult.GenRes_Succ(new GetLikeRes(likes));
         else
-            return UniRes.GenRes_Fail(null);
+            return AjaxResult.GenRes_Fail(null);
     }
     @GetMapping("/report-post")
-    public UniRes<List<post_report>> GetReport(@RequestParam int user_id)
+    public AjaxResult<List<post_report>> GetReport(@RequestParam int user_id)
     {
 
         GetPostReportReq req = new GetPostReportReq(user_id);
@@ -106,8 +106,8 @@ public class stutent {
         }
         catch(Apiexception ex)
         {
-            return UniRes.GenRes_Exception(ex);
+            return AjaxResult.GenRes_Exception(ex);
         }
-        return UniRes.GenRes_Succ(reports);
+        return AjaxResult.GenRes_Succ(reports);
     }
 }

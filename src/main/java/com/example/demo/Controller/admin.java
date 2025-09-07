@@ -2,7 +2,7 @@ package com.example.demo.Controller;
 
 import com.example.demo.DataStruct.ApproveReq;
 import com.example.demo.DataStruct.GetPostReportReq;
-import com.example.demo.DataStruct.UniRes;
+import com.example.demo.DataStruct.AjaxResult;
 import com.example.demo.entity.post_report;
 import com.example.demo.exception.Apiexception;
 import com.example.demo.service.impl.adminserviceimpl;
@@ -22,7 +22,7 @@ public class admin {
     @Resource
     postserviceimpl postservice;
     @GetMapping("/report")
-    public UniRes<List<post_report>> GetReportPostUncheck(@RequestParam int user_id)
+    public AjaxResult<List<post_report>> GetReportPostUncheck(@RequestParam int user_id)
     {
         GetPostReportReq req = new GetPostReportReq(user_id);
         List<post_report> reports;
@@ -32,12 +32,12 @@ public class admin {
         }
         catch(Apiexception ex)
         {
-            return UniRes.GenRes_Exception(ex);
+            return AjaxResult.GenRes_Exception(ex);
         }
-        return UniRes.GenRes_Succ(reports);
+        return AjaxResult.GenRes_Succ(reports);
     }
     @PostMapping("/report")
-    public UniRes ApproveReport(@RequestBody ApproveReq req)
+    public AjaxResult ApproveReport(@RequestBody ApproveReq req)
     {
         try
         {
@@ -45,8 +45,8 @@ public class admin {
         }
         catch(Apiexception ex)
         {
-            return UniRes.GenRes_Exception(ex);
+            return AjaxResult.GenRes_Exception(ex);
         }
-            return UniRes.GenRes_Succ(null);
+            return AjaxResult.GenRes_Succ(null);
     }
 }
